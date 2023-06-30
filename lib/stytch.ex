@@ -500,4 +500,12 @@ defmodule Stytch do
     "/b2b/passwords/migrate"
     |> Client.post(opts)
   end
+
+  @doc """
+    See: https://stytch.com/docs/b2b/api/session-reset
+  """
+  def b2b_passwords_sessions_reset(opts \\ %{}) when is_map(opts) do
+    "/b2b/passwords/session/reset"
+    |> Client.post(opts)
+  end
 end
