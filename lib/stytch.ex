@@ -508,4 +508,12 @@ defmodule Stytch do
     "/b2b/passwords/session/reset"
     |> Client.post(opts)
   end
+
+  @doc """
+    See: https://stytch.com/docs/b2b/api/strength-check
+  """
+  def b2b_passwords_strength_check(opts \\ %{}) when is_map(opts) do
+    "/b2b/passwords/strength_check"
+    |> Client.post(opts)
+  end
 end
