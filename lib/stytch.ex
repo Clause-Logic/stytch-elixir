@@ -516,4 +516,20 @@ defmodule Stytch do
     "/b2b/passwords/strength_check"
     |> Client.post(opts)
   end
+
+  @doc """
+    See: https://stytch.com/docs/b2b/api/get-m2m-token
+  """
+  def m2m_oauth_token(project_id, opts \\ %{}) when is_map(opts) do
+    "/public/#{project_id}/oauth2/token"
+    |> Client.post(opts)
+  end
+
+  @doc """
+    See: https://stytch.com/docs/b2b/api/get-jwks
+  """
+  def b2b_sessions_jwks(project_id) when is_binary(project_id) do
+    "/b2b/sessions/jwks/#{project_id}"
+    |> Client.get()
+  end
 end
