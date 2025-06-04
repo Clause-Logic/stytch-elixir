@@ -354,10 +354,30 @@ defmodule Stytch do
   @doc """
     See: https://stytch.com/docs/api/webauthn-register
   """
-  def webauthn_registration(user_id, public_key_credential)
+  def webauthn_registration(user_id, public_key_credential, opts \\ %{})
       when is_binary(user_id) and is_binary(public_key_credential) do
     "/webauthn/register"
-    |> Client.post(%{user_id: user_id, public_key_credential: public_key_credential})
+    |> Client.post(
+      %{user_id: user_id, public_key_credential: public_key_credential}
+      |> Map.merge(opts)
+    )
+  end
+
+  @doc """
+    See: https://stytch.com/docs/api/webauthn-update
+  """
+  def update_webauthn_registration(webauthn_registration_id, name)
+      when is_binary(webauthn_registration_id) and is_binary(name) do
+    "/webauthn/#{webauthn_registration_id}"
+    |> Client.put(%{name: name})
+  end
+
+  @doc """
+    See: https://stytch.com/docs/api/delete-user-webauthn-registration
+  """
+  def delete_user_webauthn_registration(webauthn_id) when is_binary(webauthn_id) do
+    "/users/webauthn_registrations/#{webauthn_id}"
+    |> Client.delete()
   end
 
   @doc """
