@@ -524,4 +524,13 @@ defmodule Stytch do
     "/b2b/passwords/migrate"
     |> Client.post(opts)
   end
+
+  @doc """
+    See: https://stytch.com/docs/api/password-migrate
+  """
+  def migrate_password(email, hash, hash_type, opts \\ %{})
+      when is_binary(email) and is_binary(hash) and is_binary(hash_type) and is_map(opts) do
+    "/passwords/migrate"
+    |> Client.post(%{email: email, hash: hash, hash_type: hash_type} |> Map.merge(opts))
+  end
 end
