@@ -5,4 +5,4 @@ config :stytch,
   project_id: System.get_env("STYTCH_PROJECT_ID"),
   secret: System.get_env("STYTCH_SECRET")
 
-import_config "#{Mix.env()}.exs"
+import_config "#{config_env()}.exs"
